@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interactive Photo Gallery</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #222;
+        }
+
+        #image {
+            width: 80%;
+            max-width: 700px;
+            height: 350px;
+            margin: 20px auto;
+            border: 3px solid #333;
+            border-radius: 10px;
+            background-color: #ddd;
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #222;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .gallery img {
+            width: 180px;
+            height: 130px;
+            object-fit: cover;
+            border: 3px solid #333;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .gallery img:focus {
+            outline: 4px solid #0066cc;
+            outline-offset: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Interactive Photo Gallery</h1>
+
+    <div id="image">
+        Hover over an image below to display here
+    </div>
+
+    <div class="gallery">
+
+        <img
+            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600"
+            alt="Beautiful green mountain landscape"
+            onmouseover="upDate(this)"
+            onmouseleave="undo()"
+            onfocus="upDate(this)"
+            onblur="undo()">
+
+        <img
+            src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600"
+            alt="Mountain lake surrounded by forests"
+            onmouseover="upDate(this)"
+            onmouseleave="undo()"
+            onfocus="upDate(this)"
+            onblur="undo()">
+
+        <img
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600"
+            alt="Blue ocean waves on a sandy beach"
+            onmouseover="upDate(this)"
+            onmouseleave="undo()"
+            onfocus="upDate(this)"
+            onblur="undo()">
+
+        <img
+            src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=600"
+            alt="Sunrise over a green countryside"
+            onmouseover="upDate(this)"
+            onmouseleave="undo()"
+            onfocus="upDate(this)"
+            onblur="undo()">
+
+        <img
+            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600"
+            alt="Sunlight shining through a forest"
+            onmouseover="upDate(this)"
+            onmouseleave="undo()"
+            onfocus="upDate(this)"
+            onblur="undo()">
+
+        <img
+            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600"
+            alt="Snow-covered mountain peaks under the sky"
+            onmouseover="upDate(this)"
+            onmouseleave="undo()"
+            onfocus="upDate(this)"
+            onblur="undo()">
+
+    </div>
+
+    <script>
+
+        function upDate(previewPic) {
+            console.log("Mouse or keyboard focus event triggered");
+
+            console.log("Alt:", previewPic.alt);
+            console.log("Source:", previewPic.src);
+
+            document.getElementById("image").innerHTML =
+                previewPic.alt;
+
+            document.getElementById("image").style.backgroundImage =
+                "url('" + previewPic.src + "')";
+        }
+
+        function undo() {
+            console.log("Mouse leave or blur event triggered");
+
+            document.getElementById("image").style.backgroundImage =
+                "url('')";
+
+            document.getElementById("image").innerHTML =
+                "Hover over an image below to display here";
+        }
+
+        function addTabIndex() {
+            console.log("Page loaded - adding tabindex to images");
+
+            let images = document.querySelectorAll(".gallery img");
+
+            for (let i = 0; i < images.length; i++) {
+                images[i].setAttribute("tabindex", "0");
+            }
+        }
+
+        window.addEventListener("load", addTabIndex);
+
+    </script>
+
+</body>
+</html>
